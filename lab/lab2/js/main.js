@@ -142,11 +142,14 @@ var updatePosition = function(lat, lng, updated) {
   goToOrigin(lat, lng);
 };
 
+var myPosition;
+
 $(document).ready(function() {
   /* This 'if' check allows us to safely ask for the user's current position */
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(function(position) {
       updatePosition(position.coords.latitude, position.coords.longitude, position.timestamp);
+      myPosition = position
     });
   } else {
     alert("Unable to access geolocation API!");
@@ -171,5 +174,3 @@ $(document).ready(function() {
   });
 
 });
-
-
